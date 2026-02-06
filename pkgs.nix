@@ -6,12 +6,12 @@ with pkgs; [
   git
   htop
   fastfetch
-  lazygit
   ripgrep
   tmux
-  cargo
 
   python313
+  cargo
+  nodejs
 
   hyprpaper
   hyprcursor

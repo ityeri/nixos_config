@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -19,6 +20,8 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  programs.nix-ld.enable = true;
+
   fonts.packages = with pkgs; [
     nerd-fonts.monaspace
     nanum
@@ -27,6 +30,7 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-hyprland ];
+    config.common.default = "*";
   };
 
   # Configure network proxy if necessary
@@ -41,7 +45,7 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  
+
   programs.hyprland = {
     enable = true;
     withUWSM = true;
@@ -73,12 +77,17 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = false;
 
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.it = {
     isNormalUser = true;
     description = "it";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -122,4 +131,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
 
+  virtualisation.podman.enable = true;
 }

@@ -51,7 +51,7 @@
     createDirectories = true;
 
     desktop = null;
-    documents = null;
+    documents = "/home/${username}/de/docs";
     download = "/home/${username}/down";
     music = null;
     pictures = null;
@@ -60,5 +60,12 @@
     videos = null;
   };
 
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   defaultApplications = {
+  #     "inode/directory" = [ "nautilus" ];
+  #   };
+  # };
+  #
   home.stateVersion = "25.05";
 }

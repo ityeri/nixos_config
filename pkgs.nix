@@ -11,17 +11,19 @@ with pkgs; [
   tmux
   pulseaudio
   detach
+  platformio
+  ffmpeg
 
   # language support
-  python313
+  uv
   cargo
   nodejs
+  clang
+  jdk21_headless
 
-  # de - hyprland
+  # de
   hyprpaper
   hyprcursor
-
-  opentabletdriver
 
   # gui apps
   ulauncher
@@ -34,11 +36,17 @@ with pkgs; [
   prismlauncher
   steam
   gnome-sound-recorder
+  sdrpp
+  vlc
 
   # ides
   jetbrains.idea
   jetbrains.pycharm
   jetbrains.webstorm
+  vscode
 
   arduino-ide
+
+  # others
+  opentabletdriver
 ]

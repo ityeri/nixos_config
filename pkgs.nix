@@ -5,27 +5,32 @@
 with pkgs; [
   # cli tools
   git
+  gh
   htop
   fastfetch
-  ripgrep
   tmux
   pulseaudio
   detach
   platformio
   ffmpeg
+  unzip
+  nodePackages.prettier
 
   # language support
-  uv
-  cargo
   nodejs
   clang
   jdk21_headless
+  uv
+  rustc
+  cargo
+  python314
 
   # de
   hyprpaper
   hyprcursor
 
   # gui apps
+  tetrio-desktop
   ulauncher
   firefox
   discord
@@ -38,6 +43,16 @@ with pkgs; [
   gnome-sound-recorder
   sdrpp
   vlc
+  gimp
+  # for screenshot
+  grim
+  wl-clipboard-rs
+  slurp
+  qimgv
+
+  obs-studio
+  audacity
+  kdePackages.kdenlive
 
   # ides
   jetbrains.idea

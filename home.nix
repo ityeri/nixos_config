@@ -15,7 +15,6 @@
 
   home.packages = import ./pkgs.nix { inherit pkgs; };
 
-  programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
   wayland.windowManager.hyprland = {
@@ -37,6 +36,12 @@
     theme = {
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 

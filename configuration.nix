@@ -17,15 +17,6 @@ in
     ./hardware-configuration.nix
   ];
 
-  # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.systemd-boot.edk2-uefi-shell.enable = true;
-  # boot.loader.systemd-boot.windows = {
-  # "ddongdows" = {
-  #   title = "ddongdows";
-  #   efiDeviceHandle = "HD(1,GPT,...)"; 
-  #   };
-  # };
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
@@ -33,7 +24,7 @@ in
     device = "nodev";
   };
 
-  # about printing
+  # Home epson printer setting
   services.printing = {
     enable = true;
     drivers = [ pkgs.epson-escpr ];
@@ -100,7 +91,7 @@ in
     config.common.default = "gtk";
   };
 
-  xdg.mime = {
+  xdg.mime = { # TODO I want to change a default image viewer...
     enable = true;
     defaultApplications = {
       "inode/directory" = [ "asdf" ];
@@ -154,9 +145,9 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = false;
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   hardware.opentabletdriver.enable = true;
@@ -202,19 +193,6 @@ in
     "/share/xdg-desktop-portal"
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -227,7 +205,9 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  # 요약: Nix OS 전체 버전 같은 느낌. 가능한 처음 설치했을때 값 그대로 죽을때까지 바꾸지 말라고함
   system.stateVersion = "25.11"; # Did you read the comment?
 
   virtualisation.podman.enable = true;
 }
+

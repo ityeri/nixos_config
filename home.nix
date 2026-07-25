@@ -65,12 +65,16 @@
     videos = null;
   };
 
-  # xdg.mimeApps = {
-  #   enable = true;
-  #   defaultApplications = {
-  #     "inode/directory" = [ "nautilus" ];
-  #   };
-  # };
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "inode/directory" = [ "nautilus" ];
+      "image/jpeg" = [ "qimgv" ];
+      "image/png" = [ "qimgv" ];
+      "image/gif" = [ "qimgv" ];
+      "image/webp" = [ "qimgv" ];
+    };
+  };
   #
   home.stateVersion = "25.05";
 }

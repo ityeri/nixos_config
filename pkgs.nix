@@ -4,6 +4,9 @@
 
 with pkgs; [
   # cli tools
+  k9s
+  tree
+  vagrant
   git
   gh
   htop
@@ -15,6 +18,8 @@ with pkgs; [
   ffmpeg
   unzip
   nodePackages.prettier
+  qemu
+  net-tools
 
   # language support
   nodejs
@@ -30,10 +35,15 @@ with pkgs; [
   hyprcursor
 
   # gui apps
+  appimage-run
+  lens
+  discord
+  davinci-resolve
+  libreoffice
+  qpwgraph
   tetrio-desktop
   ulauncher
   firefox
-  discord
   vesktop
   krita
   nautilus
@@ -63,5 +73,8 @@ with pkgs; [
   arduino-ide
 
   # others
+  wine
   opentabletdriver
+  easyeffects
 ]
+

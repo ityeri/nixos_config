@@ -18,7 +18,43 @@ in
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.systemd-boot.edk2-uefi-shell.enable = true;
+  # boot.loader.systemd-boot.windows = {
+  # "ddongdows" = {
+  #   title = "ddongdows";
+  #   efiDeviceHandle = "HD(1,GPT,...)"; 
+  #   };
+  # };
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    useOSProber = true;
+    device = "nodev";
+  };
+
+  # about printing
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.epson-escpr ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true; # Run QEMU as root, often necessary for bridged networking/GPU passthrough
+      swtpm.enable = true; # Enables TPM for Windows 11 compatibility
+      # ovmf.enable = true;  # Enables UEFI booting
+    };
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];
 
@@ -78,6 +114,8 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+  networking.networkmanager.dns = "none";
 
   # Set your time zone.
   time.timeZone = "Asia/Seoul";
@@ -142,15 +180,15 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    (symlinkJoin {
-      name = "discord";
-      paths = [ discord ];
-      buildInputs = [ makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/discord \
-          --add-flags "--ozone-platform=x11"
-      '';
-    })
+    # (symlinkJoin {
+    #   nmeame = "discord";
+    #   paths = [ discord ];
+    #   buildInputs = [ makeWrapper ];
+    #   postBuild = ''
+    #     wrapProgram $out/bin/discord \
+    #       --add-flags "--ozone-platform=x11"
+    #   '';
+    # })
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     neovim

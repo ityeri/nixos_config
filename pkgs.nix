@@ -4,6 +4,7 @@
 
 with pkgs; [
   # cli tools
+  claude-code
   k9s
   tree
   vagrant
@@ -76,5 +77,6 @@ with pkgs; [
   wine
   opentabletdriver
   easyeffects
+  virtiofsd
 ]
 

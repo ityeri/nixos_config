@@ -46,6 +46,8 @@ in
     };
   };
 
+  virtualisation.podman.enable = true;
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];
 
@@ -207,7 +209,5 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   # 요약: Nix OS 전체 버전 같은 느낌. 가능한 처음 설치했을때 값 그대로 죽을때까지 바꾸지 말라고함
   system.stateVersion = "25.11"; # Did you read the comment?
-
-  virtualisation.podman.enable = true;
 }
 

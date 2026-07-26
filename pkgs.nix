@@ -21,6 +21,7 @@ with pkgs; [
   nodePackages.prettier
   qemu
   net-tools
+  podman-compose
 
   # language support
   nodejs

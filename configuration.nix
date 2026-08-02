@@ -167,6 +167,7 @@ in
       "wheel"
       "input"
       "uinput"
+      "disk"
     ];
     packages = with pkgs; [ ];
   };

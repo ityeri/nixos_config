@@ -4,6 +4,7 @@
 
 with pkgs; [
   # cli tools
+  _7zz
   claude-code
   k9s
   tree

@@ -17,6 +17,10 @@ in
     ./hardware-configuration.nix
   ];
 
+  # udisks2 / polkit service
+  services.udisks2.enable = true;
+  security.polkit.enable = true;
+
   boot.loader.grub = {
     enable = true;
     efiSupport = true;

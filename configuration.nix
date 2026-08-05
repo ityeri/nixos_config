@@ -49,8 +49,9 @@ in
       # ovmf.enable = true;  # Enables UEFI booting
     };
   };
-
   virtualisation.podman.enable = true;
+  virtualisation.docker.enable = true;
+  virtualisation.docker.package = pkgs.docker_29;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];

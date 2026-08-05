@@ -56,6 +56,7 @@ in
   virtualisation.docker.package = pkgs.docker_29;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.preferStaticEmulators = true;
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];
@@ -173,6 +174,7 @@ in
       "input"
       "uinput"
       "disk"
+      "docker"
     ];
     packages = with pkgs; [ ];
   };

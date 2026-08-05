@@ -38,6 +38,7 @@ with pkgs; [
   hyprcursor
 
   # gui apps
+  freecad
   appimage-run
   lens
   discord

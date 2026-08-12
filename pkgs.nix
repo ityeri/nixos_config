@@ -38,6 +38,7 @@ with pkgs; [
   hyprcursor
 
   # gui apps
+  gource
   freecad
   appimage-run
   lens

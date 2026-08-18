@@ -52,9 +52,6 @@ in
 
   virtualisation.podman.enable = true;
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.package = pkgs.docker_29;
-
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.binfmt.preferStaticEmulators = true;
 
@@ -174,7 +171,6 @@ in
       "input"
       "uinput"
       "disk"
-      "docker"
     ];
     packages = with pkgs; [ ];
   };

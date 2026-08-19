@@ -84,3 +84,4 @@ with pkgs; [
   easyeffects
   virtiofsd
 ]
+

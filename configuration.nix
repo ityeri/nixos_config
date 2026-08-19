@@ -172,6 +172,11 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  # rust-analyzer (mason) needs std sources; nixpkgs rustc ships no rust-src.
+  environment.sessionVariables = {
+    RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+  };
+
   environment.systemPackages = with pkgs; [
     # (symlinkJoin {
     #   nmeame = "discord";

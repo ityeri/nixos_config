@@ -3,14 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-let
-  rust-bin = pkgs.rust-bin.stable.latest.default.override {
-    extensions = [
-      "rust-src"
-      "rust-analyzer"
-    ];
-  };
-in
 {
   imports = [
     # Include the results of the hardware scan.

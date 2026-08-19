@@ -22,6 +22,14 @@
 
   programs.direnv.nix-direnv.enable = true;
 
+  # managed bash so hm-session-vars.sh (sessionVariables) is sourced in shells
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      export PATH=$HOME/.local/bin:$PATH
+    '';
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;

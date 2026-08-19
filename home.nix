@@ -8,11 +8,6 @@
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
-  # rust-analyzer (mason) needs std sources; nixpkgs rustc ships no rust-src.
-  home.sessionVariables = {
-    RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
-  };
-
   xresources.properties = {
     "Xcursor.size" = 16;
     "Xft.dpi" = 172;
@@ -21,14 +16,6 @@
   home.packages = import ./pkgs.nix { inherit pkgs; };
 
   programs.direnv.nix-direnv.enable = true;
-
-  # managed bash so hm-session-vars.sh (sessionVariables) is sourced in shells
-  programs.bash = {
-    enable = true;
-    initExtra = ''
-      export PATH=$HOME/.local/bin:$PATH
-    '';
-  };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -93,3 +80,4 @@
   #
   home.stateVersion = "25.05";
 }
+

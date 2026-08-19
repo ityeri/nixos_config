@@ -31,6 +31,7 @@ with pkgs; [
   uv
   rustc
   cargo
+  rustfmt
   python314
 
   # de
@@ -83,4 +84,3 @@ with pkgs; [
   easyeffects
   virtiofsd
 ]
-

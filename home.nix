@@ -8,6 +8,11 @@
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
+  # rust-analyzer (mason) needs std sources; nixpkgs rustc ships no rust-src.
+  home.sessionVariables = {
+    RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+  };
+
   xresources.properties = {
     "Xcursor.size" = 16;
     "Xft.dpi" = 172;

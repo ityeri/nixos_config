@@ -71,10 +71,10 @@
     enable = true;
     defaultApplications = {
       "inode/directory" = [ "nautilus" ];
-      "image/jpeg" = [ "qimgv" ];
-      "image/png" = [ "qimgv" ];
-      "image/gif" = [ "qimgv" ];
-      "image/webp" = [ "qimgv" ];
+      "image/jpeg" = [ "qimgv.desktop" ];
+      "image/png" = [ "qimgv.desktop" ];
+      "image/gif" = [ "qimgv.desktop" ];
+      "image/webp" = [ "qimgv.desktop" ];
     };
   };
   #

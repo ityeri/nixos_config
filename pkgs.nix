@@ -4,6 +4,7 @@
 
 with pkgs; [
   # cli tools
+  gnumake
   _7zz
   claude-code
   k9s

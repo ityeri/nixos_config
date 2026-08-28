@@ -19,7 +19,6 @@ with pkgs; [
   platformio
   ffmpeg
   unzip
-  nodePackages.prettier
   qemu
   net-tools
   podman-compose

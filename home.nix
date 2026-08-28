@@ -17,15 +17,6 @@
 
   programs.direnv.nix-direnv.enable = true;
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    configType = "hyprlang"; # TODO
-    extraConfig = ''
-      source = ~/.config/hypr/hyprland-custom.conf
-    '';
-  };
-
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";

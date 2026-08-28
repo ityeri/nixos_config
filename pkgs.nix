@@ -43,7 +43,6 @@ with pkgs; [
   appimage-run
   lens
   discord
-  davinci-resolve
   libreoffice
   qpwgraph
   tetrio-desktop

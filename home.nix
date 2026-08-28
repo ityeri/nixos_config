@@ -20,6 +20,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
+    configType = "hyprlang"; # TODO
     extraConfig = ''
       source = ~/.config/hypr/hyprland-custom.conf
     '';
@@ -33,7 +34,7 @@
 
   gtk = {
     enable = true;
-    theme = {
+    gtk4.theme = {
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
     };

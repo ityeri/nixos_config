@@ -5,6 +5,11 @@
     ./modules/alacritty.nix
   ];
 
+  xdg.configFile."hypr/.luarc.json".text = builtins.toJSON {
+      workspace.library = [ "${pkgs.hyprland}/share/hypr/stubs" ];
+      diagnostics.globals = [ "hl" ];
+  };
+
   home.username = username;
   home.homeDirectory = "/home/${username}";
 

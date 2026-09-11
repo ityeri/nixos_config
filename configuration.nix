@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -92,7 +97,8 @@
     config.common.default = "gtk";
   };
 
-  xdg.mime = { # TODO I want to change a default image viewer...
+  xdg.mime = {
+    # TODO I want to change a default image viewer...
     enable = true;
     defaultApplications = {
       "inode/directory" = [ "asdf" ];
@@ -106,7 +112,10 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
+  ];
   networking.networkmanager.dns = "none";
 
   # Set your time zone.
@@ -170,6 +179,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Overlays
+  nixpkgs.overlays = [
+    (final: prev: {
+      xdg-desktop-portal-hyprland = inputs.xdgh.packages.${final.stdenv.hostPlatform.system}.default;
+    })
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   # rust-analyzer (mason) needs std sources; nixpkgs rustc ships no rust-src.
@@ -215,4 +231,3 @@
   # 요약: Nix OS 전체 버전 같은 느낌. 가능한 처음 설치했을때 값 그대로 죽을때까지 바꾸지 말라고함
   system.stateVersion = "25.11"; # Did you read the comment?
 }
-

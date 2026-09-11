@@ -2,7 +2,11 @@
   description = "A simple NixOS flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    xdgh = {
+      url = "github:ityeri/xdg-desktop-portal-hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -10,7 +14,12 @@
   };
 
   outputs =
-    { self, nixpkgs, home-manager, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       hostname = "it";
@@ -18,9 +27,12 @@
 
       pkgs = import nixpkgs {
         inherit system;
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
       };
-    in {
+    in
+    {
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
@@ -41,4 +53,3 @@
       };
     };
 }
-

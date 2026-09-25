@@ -1,4 +1,9 @@
-{ inputs, username, pkgs, ... }:
+{
+  inputs,
+  username,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -6,8 +11,8 @@
   ];
 
   xdg.configFile."hypr/.luarc.json".text = builtins.toJSON {
-      workspace.library = [ "${pkgs.hyprland}/share/hypr/stubs" ];
-      diagnostics.globals = [ "hl" ];
+    workspace.library = [ "${pkgs.hyprland}/share/hypr/stubs" ];
+    diagnostics.globals = [ "hl" ];
   };
 
   home.username = username;
@@ -77,4 +82,3 @@
   #
   home.stateVersion = "25.05";
 }
-

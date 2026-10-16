@@ -2,7 +2,8 @@
 
 { pkgs, ... }:
 
-with pkgs; [
+with pkgs;
+[
   # cli tools
   gnumake
   _7zz
@@ -29,9 +30,7 @@ with pkgs; [
   clang
   jdk21_headless
   uv
-  rustc
-  cargo
-  rustfmt
+  rustup
   python314
 
   # de
@@ -83,4 +82,3 @@ with pkgs; [
   easyeffects
   virtiofsd
 ]
-

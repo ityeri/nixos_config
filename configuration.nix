@@ -3,8 +3,8 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 {
-  config,
   pkgs,
+  config,
   inputs,
   ...
 }:
@@ -37,17 +37,33 @@
     openFirewall = true;
   };
 
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true; # Run QEMU as root, often necessary for bridged networking/GPU passthrough
-      swtpm.enable = true; # Enables TPM for Windows 11 compatibility
-      # ovmf.enable = true;  # Enables UEFI booting
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true; # Run QEMU as root, often necessary for bridged networking/GPU passthrough
+        swtpm.enable = true; # Enables TPM for Windows 11 compatibility
+        # ovmf.enable = true;  # Enables UEFI booting
+      };
     };
-  };
 
-  virtualisation.podman.enable = true;
+    podman.enable = true;
+
+    # `podman machine start` needs gvproxy for host<->VM networking, but it's
+    # not bundled with podman on NixOS, so point containers.conf at it.
+    # Also re-add podman's own libexec dir (netavark/aardvark-dns live there)
+    # since setting this option replaces the default search list entirely.
+    containers.containersConf.settings.engine.helper_binaries_dir = [
+      "${pkgs.gvproxy}/bin"
+      "${config.virtualisation.podman.package}/libexec/podman"
+    ];
+
+    # NixOS's default registries.conf only sets [[registry]] entries without
+    # unqualified-search-registries, so short-name pulls (e.g. `redis:latest`)
+    # can't resolve. Point them at docker.io.
+    containers.registries.settings.unqualified-search-registries = [ "docker.io" ];
+  };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.binfmt.preferStaticEmulators = true;
@@ -183,6 +199,12 @@
   nixpkgs.overlays = [
     (final: prev: {
       xdg-desktop-portal-hyprland = inputs.xdgh.packages.${final.stdenv.hostPlatform.system}.default;
+      xdg-desktop-portal = prev.xdg-desktop-portal.overrideAttrs (old: {
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace src/xdg-desktop-portal.service.in \
+            --replace-fail "Requisite=graphical-session.target" "Requires=dbus.service"
+        '';
+      });
     })
   ];
 

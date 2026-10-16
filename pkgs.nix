@@ -13,7 +13,7 @@ with pkgs;
   vagrant
   git
   gh
-  htop
+  htop-vim
   fastfetch
   tmux
   pulseaudio

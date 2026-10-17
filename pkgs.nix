@@ -24,13 +24,14 @@ with pkgs;
   qemu
   net-tools
   podman-compose
+  ripgrep # Dependency of telescope nvim plugin
 
   # language support
   nodejs
   clang
   jdk21_headless
   uv
-  rustup
+  rustup # includes cargo, rustc, rustfmt
   python314
 
   # de

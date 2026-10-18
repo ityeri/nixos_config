@@ -58,6 +58,7 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = true;
 
     desktop = null;
     documents = "/home/${username}/de/docs";

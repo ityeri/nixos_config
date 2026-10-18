@@ -25,6 +25,14 @@
     device = "nodev";
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.preferStaticEmulators = true;
+
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];
+
+  boot.tmp.useTmpfs = true;
+
   # Home epson printer setting
   services.printing = {
     enable = true;
@@ -64,12 +72,6 @@
     # can't resolve. Point them at docker.io.
     containers.registries.settings.unqualified-search-registries = [ "docker.io" ];
   };
-
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  boot.binfmt.preferStaticEmulators = true;
-
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];
 
   networking.hostName = "it"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

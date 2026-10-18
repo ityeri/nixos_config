@@ -39,6 +39,7 @@ with pkgs;
   hyprcursor
 
   # gui apps
+  figma-linux
   gource
   freecad
   appimage-run

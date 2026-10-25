@@ -39,6 +39,7 @@ with pkgs;
   hyprcursor
 
   # gui apps
+  mindustry
   figma-linux
   gource
   freecad

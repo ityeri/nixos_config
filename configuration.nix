@@ -197,17 +197,17 @@
   nixpkgs.config.allowUnfree = true;
 
   # Overlays
-  nixpkgs.overlays = [
-    (final: prev: {
-      xdg-desktop-portal-hyprland = inputs.xdgh.packages.${final.stdenv.hostPlatform.system}.default;
-      xdg-desktop-portal = prev.xdg-desktop-portal.overrideAttrs (old: {
-        postPatch = (old.postPatch or "") + ''
-          substituteInPlace src/xdg-desktop-portal.service.in \
-            --replace-fail "Requisite=graphical-session.target" "Requires=dbus.service"
-        '';
-      });
-    })
-  ];
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     xdg-desktop-portal-hyprland = inputs.xdgh.packages.${final.stdenv.hostPlatform.system}.default;
+  #     xdg-desktop-portal = prev.xdg-desktop-portal.overrideAttrs (old: {
+  #       postPatch = (old.postPatch or "") + ''
+  #         substituteInPlace src/xdg-desktop-portal.service.in \
+  #           --replace-fail "Requisite=graphical-session.target" "Requires=dbus.service"
+  #       '';
+  #     });
+  #   })
+  # ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
